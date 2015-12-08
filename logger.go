@@ -199,14 +199,10 @@ func (l *Logger) Criticalf(format string, args ...interface{}) {
 	l.log(CRITICAL, format, args...)
 }
 
-// Error logs a message using ERROR as log level. (fmt.Sprint())
+// Error logs a message using ERROR as log level.
 func (l *Logger) Error(args ...interface{}) {
-	l.log(ERROR, defaultArgsFormat(len(args)), args...)
-}
-
-// Errorf logs a message using ERROR as log level.
-func (l *Logger) Errorf(format string, args ...interface{}) {
-	l.log(ERROR, format, args...)
+	s := fmt.Sprint(args...)
+	l.log(ERROR, "%s", s)
 }
 
 // Errorf logs a message using ERROR as log level.
