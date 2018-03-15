@@ -1,8 +1,7 @@
 package main
 
 import (
-	"os"
-
+	colorable "github.com/mattn/go-colorable"
 	"github.com/whyrusleeping/go-logging"
 )
 
@@ -24,9 +23,9 @@ func (p Password) Redacted() interface{} {
 }
 
 func main() {
-	// For demo purposes, create two backend for os.Stderr.
-	backend1 := logging.NewLogBackend(os.Stderr, "", 0)
-	backend2 := logging.NewLogBackend(os.Stderr, "", 0)
+	// For demo purposes, create two, colored backends, for os.Stderr.
+	backend1 := logging.NewLogBackend(colorable.NewColorableStderr(), "", 0)
+	backend2 := logging.NewLogBackend(colorable.NewColorableStderr(), "", 0)
 
 	// For messages written to backend2 we want to add some additional
 	// information to the output, including the used log level and the name of
